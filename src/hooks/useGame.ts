@@ -5,21 +5,29 @@ import {type IState} from "../context/state"
 const useGame = () => {
   const { state, dispatch } = useAppContext()
   const {
-    count,
+    gameState,
   } = state as IState
 
-  const incCount = (n: number) => {
-    dispatch({type: Actions.SetCount, payload: count + n})
+  // ACTIONS
+
+  const gameBegin = (n: number) => {
+    console.log('Set Players:', n)
+    // dispatch({type: Actions.ResetDeck})
+    // dispatch({type: Actions.SetPlayers, payload: getPlayers(n)})
+    dispatch({type: Actions.SetGameState, payload: 2})
+    // handBegin()
   }
 
-  const decCount = (n: number) => {
-    dispatch({type: Actions.SetCount, payload: count - n})
+  const gameEnd = () => {
+    // dispatch({type: Actions.SetPlayers, payload: []})
+    dispatch({type: Actions.SetGameState, payload: 0})
   }
 
   return {
-    count,
-    incCount,
-    decCount,
+    gameState,
+
+    gameBegin,
+    gameEnd,
   }
 }
 

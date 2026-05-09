@@ -1,7 +1,7 @@
 export interface IState {
-  count: number
+  gameState: number // 0: Intro, 1: Main, 2: Outro
 }
 
 export const defaultState: IState = {
-  count: 0,
+  gameState: 0,
 }
