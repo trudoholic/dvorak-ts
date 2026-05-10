@@ -2,10 +2,13 @@ import useAppContext from "../context/useAppContext"
 import {Actions} from "../context/reducer"
 import {type IState} from "../context/state"
 
+import {playerList} from "../data/players"
+
 const useGame = () => {
   const { state, dispatch } = useAppContext()
   const {
     gameState,
+    players,
   } = state as IState
 
   // ACTIONS
@@ -13,7 +16,7 @@ const useGame = () => {
   const gameBegin = (n: number) => {
     console.log('Set Players:', n)
     // dispatch({type: Actions.ResetDeck})
-    // dispatch({type: Actions.SetPlayers, payload: getPlayers(n)})
+    dispatch({type: Actions.SetPlayers, payload: playerList(n)})
     dispatch({type: Actions.SetGameState, payload: 2})
     // handBegin()
   }
@@ -25,6 +28,7 @@ const useGame = () => {
 
   return {
     gameState,
+    players,
 
     gameBegin,
     gameEnd,
