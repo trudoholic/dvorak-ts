@@ -14,23 +14,33 @@ const useGame = () => {
   // ACTIONS
 
   const gameBegin = (n: number) => {
-    console.log('Set Players:', n)
     // dispatch({type: Actions.ResetDeck})
     dispatch({type: Actions.SetPlayers, payload: playerList(n)})
-    dispatch({type: Actions.SetGameState, payload: 2})
+    dispatch({type: Actions.SetGameState, payload: 1})
     // handBegin()
   }
 
+  const gameOutro = () => {
+    dispatch({type: Actions.SetGameState, payload: 2})
+  }
+
   const gameEnd = () => {
-    // dispatch({type: Actions.SetPlayers, payload: []})
+    dispatch({type: Actions.SetPlayers, payload: []})
     dispatch({type: Actions.SetGameState, payload: 0})
   }
 
+  // PREDICATES
+
+  // const gameOver = players.some(p => p.score > 30)
+  const gameOver = true
+
   return {
+    gameOver,
     gameState,
     players,
 
     gameBegin,
+    gameOutro,
     gameEnd,
   }
 }
